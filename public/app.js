@@ -2,19 +2,15 @@ var app = function() {
   addCat("Dog", "Chocolate", "http://static.boredpanda.com/blog/wp-content/uploads/2014/02/funny-wet-cats-1.jpg");
 }
 
-var addCat = function(name, food, url) {
+var addCat = function(inputName, inputFood, inputUrl) {
   var cat = createUlCat();
-  var nameItem = createLiName(name);
-  var faveFood = createLiFood(food);
-  var photo = createLiImage(url);
+  var nameLi = createLiName(inputName);
+  var foodLi = createLiFood(inputFood);
+  var photo = createLiImage(inputUrl);
 
-  cat.appendChild(nameItem);
-  cat.appendChild(faveFood);
-  cat.appendChild(photo);
   var cats = document.querySelector('#cats');
-  cats.appendChild(cat);
+  appendElements(cat, nameLi, foodLi, photo, cats);
 }
-
 
 // 1. Create ul Cat
 var createUlCat = function() {
@@ -40,6 +36,14 @@ var createLiImage = function(url) {
   catPic.width = '500';
   catPic.src = url;
   return catPic;
+}
+
+// 5. Append
+var appendElements = function(cat, nameItem, faveFood, photo, appendTo) {
+  cat.appendChild(nameItem);
+  cat.appendChild(faveFood);
+  cat.appendChild(photo);
+  appendTo.appendChild(cat);
 }
 
 window.onload = app;
